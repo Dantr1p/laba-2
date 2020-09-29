@@ -58,6 +58,75 @@ void add_price(laptop_factory m1, laptop_factory m2)
     printf("Total price of laptop: %lf", sum);
 }
 
+void compare_laptop(laptop_factory m1, laptop_factory m2)
+{
+    int ram, cpu, year;
+    double price;
+    printf("Compare laptop: %s and laptop: &s\n", m1.model, m2.model);
+
+    // сравниваем по ram
+    if (m1.RAM_size > m2.RAM_size)
+    {
+        ram = m1.RAM_size - m2.RAM_size;
+        printf("The RAM of the laptop %s is more on the RAM of the laptop %s by %d gb\n", m1.model, m2.model, ram);
+    }
+    if (m1.RAM_size < m2.RAM_size)
+    {
+        ram = m2.RAM_size - m1.RAM_size;
+        printf("The RAM of the laptop %s is more on the RAM of the laptop %s by %d gb\n", m2.model, m1.model, ram);
+    }
+    if (m1.RAM_size = m2.RAM_size)
+    {
+        printf("Laptops have the same RAM\n");
+    }    
+    // сравниваем по частоте
+    if (m1.CPU_frequency > m2.CPU_frequency)
+    {
+        cpu = m1.CPU_frequency - m2.CPU_frequency;
+        printf("The CPU frequency of the laptop %s is more on the CPU frequency of the laptop %s by %d \n", m1.model, m2.model, cpu);
+    }
+    if (m1.CPU_frequency < m2.CPU_frequency)
+    {
+        ram = m2.CPU_frequency - m1.CPU_frequency;
+        printf("The CPU frequency of the laptop %s is more on the CPU frequency of the laptop %s by %d \n", m2.model, m1.model, cpu);
+    }
+    if (m1.CPU_frequency = m2.CPU_frequency)
+    {
+        printf("Laptops have the same CPU frequency\n");
+    }
+    // сравниваем по цене
+    if (m1.price > m2.price)
+    {
+        price = m1.price - m2.price;
+        printf("The price of the laptop %s is more on the price of the laptop %s by %d \n", m1.model, m2.model, price);
+    }
+    if (m1.price < m2.price)
+    {
+        ram = m2.price - m1.price;
+        printf("The price of the laptop %s is more on the price of the laptop %s by %d \n", m2.model, m1.model, price);
+    }
+    if (m1.price = m2.price)
+    {
+        printf("Laptops have the same price\n");
+    }
+    // сравниваем по году выпуска
+    if (m1.year > m2.year)
+    {
+        year = m1.year - m2.year;
+        printf("The year of the laptop %s is more on the year of the laptop %s by %d \n", m1.model, m2.model, year);
+    }
+    if (m1.year < m2.year)
+    {
+        year = m2.year - m1.year;
+        printf("The year of the laptop %s is more on the year of the laptop %s by %d \n", m2.model, m1.model, year);
+    }
+    if (m1.year = m2.year)
+    {
+        printf("Laptops have the same year\n");
+    }
+
+}
+
 int main()
 {
 	
