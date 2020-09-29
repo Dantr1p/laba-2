@@ -6,11 +6,11 @@
 #define STD ""
 typedef struct {
 
-	char model[LEN];	
-	int RAM_size;
-	int CPU_frequency;
-	double price;
-	int year;
+	char model[LEN];	//модель ноутбука
+	int RAM_size;// объем оперативной памяти
+	int CPU_frequency; //частота процессора
+	double price;// цена ноутбука
+	int year;// Год производства
 } laptop_factory;
 
 
@@ -138,14 +138,14 @@ int main()
     laptop2 = init("model2",0, 0, 0, 0);
     printf("Initialization: \n");
 
-    //laptop2 = init("Asus Zenbook", 4, 2500, 35000, 2017);   
-    //laptop1 = init("Asus NITRO 5", 8, 3500, 60000, 2020);
+    laptop2 = init("Asus Zenbook", 4, 2500, 35000, 2017);   
+    laptop1 = init("Asus NITRO 5", 8, 3500, 60000, 2020);
 
     output(laptop1);   
     output(laptop2); 
     printf("\nEntering: \n");
-    laptop1 = input();
-    laptop2 = input();    
+    //laptop1 = input();
+    //laptop2 = input();    
     output(laptop1);
     output(laptop2);
     add_price(laptop1, laptop2);
@@ -162,18 +162,23 @@ int main()
     output(*laptop3);
     output(*laptop4);
     printf("\nEntering: \n");
-    *laptop3 = input();
-    laptop4 = &(input());
+    //*laptop3 = input();
+    //laptop4 = &(input());
 
-    //*laptop3 = init("Asus Zenbook", 4, 2500, 35000, 2017);
-    //laptop4 = &(init("Asus NITRO 5", 8, 3500, 60000, 2020));
+    *laptop3 = init("Asus Zenbook", 4, 2500, 35000, 2017);
+    laptop4 = &(init("Asus NITRO 5", 8, 3500, 60000, 2020));
 
     output(*laptop3);
     output(*laptop4);
     add_price(*laptop3, *laptop4);
     compare_laptop(*laptop3, *laptop4);
-    printf("%p\n", laptop3);
-    printf("%p\n", laptop4);
+    printf("laptop 3: %p\n", laptop3);
+    printf("laptop 4: %p\n", laptop4);    
+    free(laptop3);
+        
+
     _getch();
+    return 0;
+
 }
 
