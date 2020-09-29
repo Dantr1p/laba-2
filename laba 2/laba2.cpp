@@ -35,13 +35,27 @@ laptop_factory input()
     scanf_s("%d", &lap.RAM_size);
     printf("Enter CPU frequency : \n");
     scanf_s("%d", &lap.CPU_frequency);
-    printf("Enter RAM size : \n");
-    scanf_s("%f", &lap.price);
+    printf("Enter price : \n");
+    scanf_s("%lf", &lap.price);
     printf("Enter year : \n");
     scanf_s("%d", &lap.year);
     return lap;
 }
 
+void output(laptop_factory check)
+{
+    printf("Model laptop: %s\n", check.model);
+    printf("RAM size laptop: %d\n", check.RAM_size);
+    printf("CPU frequency laptop: %d\n", check.CPU_frequency);
+    printf("Price laptop: %lf\n", check.price);
+    printf("Release year laptop: %d\n", check.year);
+}
+
+void add_price(laptop_factory m1, laptop_factory m2)
+{
+    double sum;
+    sum=
+}
 
 int main()
 {
