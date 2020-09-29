@@ -136,21 +136,44 @@ int main()
    
     laptop1 = init("model1",0, 0, 0, 0);
     laptop2 = init("model2",0, 0, 0, 0);
-   // printf("Initialization: \n");
-    laptop1 = init("Asus Zenbook", 4, 2500, 35000, 2017);
-    laptop2 = init("Asus NITRO 5", 8, 3500, 60000, 2018);
+    printf("Initialization: \n");
+
+    //laptop2 = init("Asus Zenbook", 4, 2500, 35000, 2017);   
+    //laptop1 = init("Asus NITRO 5", 8, 3500, 60000, 2020);
+
     output(laptop1);   
     output(laptop2); 
-
-   //laptop1 = input();
-    //laptop2 = input();
-  //  printf("\nAfter entering: \n");
-   // output(laptop1);
-   // output(laptop2);
+    printf("\nEntering: \n");
+    laptop1 = input();
+    laptop2 = input();    
+    output(laptop1);
+    output(laptop2);
     add_price(laptop1, laptop2);
     compare_laptop(laptop1, laptop2);
 
+    printf("\n\nWorking with dynamic variables\n");
+    laptop_factory* laptop3;
+    laptop_factory* laptop4;
+    laptop3 = (laptop_factory*)malloc(sizeof(laptop_factory));
+    laptop4 = (laptop_factory*)malloc(sizeof(laptop_factory));
+    *laptop3 = init("model3", 0, 0, 0, 0);
+    laptop4 = &(init("model4", 0, 0, 0, 0));
+    printf("\nInitialization: \n");
+    output(*laptop3);
+    output(*laptop4);
+    printf("\nEntering: \n");
+    *laptop3 = input();
+    laptop4 = &(input());
 
+    //*laptop3 = init("Asus Zenbook", 4, 2500, 35000, 2017);
+    //laptop4 = &(init("Asus NITRO 5", 8, 3500, 60000, 2020));
+
+    output(*laptop3);
+    output(*laptop4);
+    add_price(*laptop3, *laptop4);
+    compare_laptop(*laptop3, *laptop4);
+    printf("%p\n", laptop3);
+    printf("%p\n", laptop4);
     _getch();
 }
 
