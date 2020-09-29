@@ -54,7 +54,8 @@ void output(laptop_factory check)
 void add_price(laptop_factory m1, laptop_factory m2)
 {
     double sum;
-    sum=
+    sum = m1.price + m2.price;
+    printf("Total price of laptop: %lf", sum);
 }
 
 int main()
