@@ -1,6 +1,7 @@
 #include <stdio.h>
-#include<malloc.h>
-#include<string.h>
+#include <malloc.h>
+#include <string.h>
+#include <conio.h>
 #define LEN 25
 #define STD ""
 typedef struct {
@@ -13,10 +14,11 @@ typedef struct {
 } laptop_factory;
 
 
-laptop_factory init(int ram, int freq, double pr, int year)
+laptop_factory init(char name[LEN], int ram, int freq, double pr, int year)
 {
     laptop_factory check;
-    strcpy_s(check.model, STD);
+    rewind(stdin);    
+    strcpy_s(check.model, name);
     check.RAM_size = ram;
     check.CPU_frequency = freq;
     check.price = pr;     
@@ -27,15 +29,15 @@ laptop_factory init(int ram, int freq, double pr, int year)
 laptop_factory input()
 {
     laptop_factory lap;
-    init(0, 0, 0, 0);
+    init(STD,0, 0, 0, 0);
     printf("Enter model: \n");
     rewind(stdin); 
     gets_s(lap.model, LEN);
-    printf("Enter RAM size : \n");
+    printf("Enter RAM size(GB) : \n");
     scanf_s("%d", &lap.RAM_size);
-    printf("Enter CPU frequency : \n");
+    printf("Enter CPU frequency(Hz) : \n");
     scanf_s("%d", &lap.CPU_frequency);
-    printf("Enter price : \n");
+    printf("Enter price(Rubles) : \n");
     scanf_s("%lf", &lap.price);
     printf("Enter year : \n");
     scanf_s("%d", &lap.year);
@@ -45,9 +47,9 @@ laptop_factory input()
 void output(laptop_factory check)
 {
     printf("Model laptop: %s\n", check.model);
-    printf("RAM size laptop: %d\n", check.RAM_size);
-    printf("CPU frequency laptop: %d\n", check.CPU_frequency);
-    printf("Price laptop: %lf\n", check.price);
+    printf("RAM size laptop: %d gb\n", check.RAM_size);
+    printf("CPU frequency laptop: %d Hz\n", check.CPU_frequency);
+    printf("Price laptop: %g rubles\n", check.price);
     printf("Release year laptop: %d\n", check.year);
 }
 
@@ -55,14 +57,14 @@ void add_price(laptop_factory m1, laptop_factory m2)
 {
     double sum;
     sum = m1.price + m2.price;
-    printf("Total price of laptop: %lf", sum);
+    printf("Total price of laptop: %g rubles\n", sum);
 }
 
 void compare_laptop(laptop_factory m1, laptop_factory m2)
 {
-    int ram, cpu, year;
-    double price;
-    printf("Compare laptop: %s and laptop: &s\n", m1.model, m2.model);
+    int ram=0, cpu=0, year=0;
+    double price=0;
+    printf("Compare laptop: %s and laptop: %s\n", m1.model, m2.model);
 
     // сравниваем по ram
     if (m1.RAM_size > m2.RAM_size)
@@ -75,7 +77,7 @@ void compare_laptop(laptop_factory m1, laptop_factory m2)
         ram = m2.RAM_size - m1.RAM_size;
         printf("The RAM of the laptop %s is more on the RAM of the laptop %s by %d gb\n", m2.model, m1.model, ram);
     }
-    if (m1.RAM_size = m2.RAM_size)
+    if (m1.RAM_size == m2.RAM_size)
     {
         printf("Laptops have the same RAM\n");
     }    
@@ -83,14 +85,14 @@ void compare_laptop(laptop_factory m1, laptop_factory m2)
     if (m1.CPU_frequency > m2.CPU_frequency)
     {
         cpu = m1.CPU_frequency - m2.CPU_frequency;
-        printf("The CPU frequency of the laptop %s is more on the CPU frequency of the laptop %s by %d \n", m1.model, m2.model, cpu);
+        printf("The CPU frequency of the laptop %s is more on the CPU frequency of the laptop %s by %d Hz\n", m1.model, m2.model, cpu);
     }
     if (m1.CPU_frequency < m2.CPU_frequency)
     {
-        ram = m2.CPU_frequency - m1.CPU_frequency;
-        printf("The CPU frequency of the laptop %s is more on the CPU frequency of the laptop %s by %d \n", m2.model, m1.model, cpu);
+        cpu = m2.CPU_frequency - m1.CPU_frequency;
+        printf("The CPU frequency of the laptop %s is more on the CPU frequency of the laptop %s by %d Hz\n", m2.model, m1.model, cpu);
     }
-    if (m1.CPU_frequency = m2.CPU_frequency)
+    if (m1.CPU_frequency == m2.CPU_frequency)
     {
         printf("Laptops have the same CPU frequency\n");
     }
@@ -98,14 +100,14 @@ void compare_laptop(laptop_factory m1, laptop_factory m2)
     if (m1.price > m2.price)
     {
         price = m1.price - m2.price;
-        printf("The price of the laptop %s is more on the price of the laptop %s by %d \n", m1.model, m2.model, price);
+        printf("The price of the laptop %s is more on the price of the laptop %s by %g rubles \n", m1.model, m2.model, price);
     }
     if (m1.price < m2.price)
     {
-        ram = m2.price - m1.price;
-        printf("The price of the laptop %s is more on the price of the laptop %s by %d \n", m2.model, m1.model, price);
+        price = m2.price - m1.price;
+        printf("The price of the laptop %s is more on the price of the laptop %s by %g rubles\n", m2.model, m1.model, price);
     }
-    if (m1.price = m2.price)
+    if (m1.price == m2.price)
     {
         printf("Laptops have the same price\n");
     }
@@ -120,7 +122,7 @@ void compare_laptop(laptop_factory m1, laptop_factory m2)
         year = m2.year - m1.year;
         printf("The year of the laptop %s is more on the year of the laptop %s by %d \n", m2.model, m1.model, year);
     }
-    if (m1.year = m2.year)
+    if (m1.year == m2.year)
     {
         printf("Laptops have the same year\n");
     }
@@ -129,6 +131,26 @@ void compare_laptop(laptop_factory m1, laptop_factory m2)
 
 int main()
 {
-	
+    laptop_factory laptop1;
+    laptop_factory laptop2;
+   
+    laptop1 = init("model1",0, 0, 0, 0);
+    laptop2 = init("model2",0, 0, 0, 0);
+   // printf("Initialization: \n");
+    laptop1 = init("Asus Zenbook", 4, 2500, 35000, 2017);
+    laptop2 = init("Asus NITRO 5", 8, 3500, 60000, 2018);
+    output(laptop1);   
+    output(laptop2); 
+
+   //laptop1 = input();
+    //laptop2 = input();
+  //  printf("\nAfter entering: \n");
+   // output(laptop1);
+   // output(laptop2);
+    add_price(laptop1, laptop2);
+    compare_laptop(laptop1, laptop2);
+
+
+    _getch();
 }
 
